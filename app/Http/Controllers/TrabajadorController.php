@@ -14,7 +14,9 @@ class TrabajadorController extends Controller
      */
     public function index()
     {
-        //
+        return view('trabajador.index', [
+            'trabajadors' => Trabajador::all()
+        ]);
     }
 
     /**
