@@ -20,4 +20,4 @@ Route::get('/', function () {
 
 Route::get('/testdb', 'HomeController@testDBConection');
 
-Route::resource('/trabajadores', 'TrabajadorController');
+Route::resource('/workers', 'WorkerController');
