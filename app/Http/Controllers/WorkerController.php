@@ -60,7 +60,10 @@ class WorkerController extends Controller
      */
     public function show(Worker $worker)
     {
-        //
+        // Se redirecciona a la vista del inventario de cada trabajador por medio del ModelBinding
+        return view('worker.show', [
+            'worker' => $worker
+        ]);
     }
 
     /**

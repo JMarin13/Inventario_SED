@@ -35,7 +35,7 @@
                                     <td>{{$worker->telephone}}</td>
                                     <td>{{$worker->email}}</td>
                                     <td>
-                                        {{-- <a href="/workers/{{$worker->id}}/edit" class="btn btn-success">Editar</a> --}}
+                                        <a href="/workers/{{$worker->id}}" class="btn btn-outline-primary">Ver Inventario</a>
                                     </td>
                                     <td>
                                         <a href="/workers/{{$worker->id}}/edit" class="btn btn-success">Editar</a>

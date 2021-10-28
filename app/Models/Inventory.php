@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Worker extends Model
+class Inventory extends Model
 {
     /**
-     * Get the inventories for the blog post.
+     * Get the Worker that owns the Inventories.
      */
-    public function inventories()
+    public function worker()
     {
-        return $this->hasMany(Inventory::class);
+        return $this->belongsTo(Worker::class);
     }
 }

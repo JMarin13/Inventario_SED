@@ -14,10 +14,15 @@ use App\Http\Controllers;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WorkerController@index');
 
 Route::get('/testdb', 'HomeController@testDBConection');
 
 Route::resource('/workers', 'WorkerController');
+
+// Route::resource('/inventories', 'InventoryController');
+
+Route::get('/workers/{worker}/inventories/create', 'InventoryController@create');
+Route::get('/workers/{worker}/inventories/{inventory}/edit', 'InventoryController@edit');
+Route::post('/workers/{worker}/inventories', 'InventoryController@store');
+Route::delete('/workers/{worker}/inventories/{inventory}', 'InventoryController@destroy')->name('inventories.destroy');
