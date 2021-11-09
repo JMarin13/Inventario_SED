@@ -1,13 +1,8 @@
-@extends('layouts.base')
+@extends('layouts.app')
 @section('content')
-    <div class="row">
+    <div class="row text-center alert alert-success">
         <div class="col">
-            <h1>Trabajadores</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col text-right">
-            <a href="/workers/create" class="btn btn-primary">Crear nuevo Trabajador</a>
+            <h1 class="text-center">Funcionarios</h1>
         </div>
     </div>
     <br>
@@ -15,18 +10,24 @@
         <div class="row">
             <div class="col">
                 <div class="jumbotron">
+                    <div class="row">
+                        <div class="col text-right">
+                            <a href="/workers/create" class="btn btn-primary">Crear nuevo Funcionario</a>
+                        </div>
+                    </div>
+                    <br>
                     <table class="table table-bordered table-striped">
-                        <thead>
+                        <thead class="text-center">
                             <th>Documento</th>
                             <th>Nombres</th>
                             <th>Apellidos</th>
                             <th>Celular</th>
                             <th>Correo Electrónico</th>
-                            <th>Ver Inventario</th>
+                            <th>Cargo</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             @foreach ($workers as $worker)
                                 <tr>
                                     <td>{{$worker->document}}</td>
@@ -34,9 +35,7 @@
                                     <td>{{$worker->lastname}}</td>
                                     <td>{{$worker->telephone}}</td>
                                     <td>{{$worker->email}}</td>
-                                    <td>
-                                        <a href="/workers/{{$worker->id}}" class="btn btn-outline-primary">Ver Inventario</a>
-                                    </td>
+                                    <td>{{$worker->profession}}</td>
                                     <td>
                                         <a href="/workers/{{$worker->id}}/edit" class="btn btn-success">Editar</a>
                                     </td>
@@ -60,4 +59,16 @@
             </div>
         </div>
     </div>
+    <style>
+        .btn-danger {
+            background-color: #555555;
+        }
+        .btn-success {
+            background-color: #e7e7e7; 
+            color: black;
+        }
+        .titulo {
+            color: f2f2f2;
+        }
+    </style>
 @endsection

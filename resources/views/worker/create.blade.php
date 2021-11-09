@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <h1>Nuevo Trabajador</h1>
+            <h1>Nuevo Funcionario</h1>
         </div>
     </div>
     <br>
@@ -43,13 +43,18 @@
                     <input type="email" class="form-control" id="email" name="email" 
                     placeholder="Ingresar su correo electrónico" value="{{old('email')}}">
                 </div>
+                <div class="form-group">
+                    <label for="profession">Cargo</label>
+                    <input type="text" class="form-control" id="profession" name="profession" 
+                    placeholder="Ingresar cargo del trabajador" value="{{old('profession')}}">
+                </div>
                 <br>
                 <div class="row">
                     <div class="col">
                         <a href="/workers" class="btn btn-danger btn-block">Atras</a>
                     </div>
                     <div class="col">
-                        <input type="submit" value="Guardar Trabajador" class="btn btn-primary btn-block">
+                        <input type="submit" value="Guardar Funcionario" class="btn btn-primary btn-block">
                     </div>
                 </div>
             </form>

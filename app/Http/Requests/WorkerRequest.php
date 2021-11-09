@@ -29,7 +29,8 @@ class WorkerRequest extends FormRequest
             'name' => ['required', 'regex:/^[\pL\s\-]+$/u', 'min:2'],
             'lastname' => ['required', 'regex:/^[\pL\s\-]+$/u', 'min:2'],
             'telephone' => ['required', 'min:7', 'max:10'],
-            'email' => ['required', 'email']
+            'email' => ['required', 'email'],
+            'profession' => ['required', 'regex:/^[\pL\s\-]+$/u']
         ];
     }
 
@@ -55,7 +56,9 @@ class WorkerRequest extends FormRequest
             'document.unique' => 'El documento ya existe',
             'email.email' => 'Diligencie un correo electrónico válido',
             'name.regex' => 'El Nombre no puede tener números',
-            'lastname.regex' => 'El Apellido no puede tener números'
+            'lastname.regex' => 'El Apellido no puede tener números',
+            'profession.required' => 'El campo Cargo es obligatorio',
+            'profession.regex' => 'El Cargo no puede tener números'
         ];
     }
 }

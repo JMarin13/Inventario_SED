@@ -15,9 +15,9 @@ class WorkerController extends Controller
      */
     public function index()
     {
-        // Se retorna la vista index de los trabajadores (en una tabla con todos los datos)
+        // Se retorna la vista principal de los trabajadores (en una tabla con todos los datos)
         return view('worker.index', [
-            'workers' => Worker::all()
+            'workers' => Worker::orderBy('name', 'ASC')->get()
         ]);
     }
 
@@ -40,13 +40,14 @@ class WorkerController extends Controller
      */
     public function store(WorkerRequest $request)
     {
-        // Se almacena el trabajador que se ha creado y se retorna a la vista index de trabajadores
+        // Se almacena el trabajador que se ha creado y se retorna a la vista principal de trabajadores
         $worker = new Worker();
         $worker -> document = $request->get('document');
         $worker -> name = $request->get('name');
         $worker -> lastname = $request->get('lastname');
         $worker -> telephone = $request->get('telephone');
         $worker -> email = $request->get('email');
+        $worker -> profession = $request->get('profession');
 
         $worker -> save();
         return redirect('/workers');
@@ -60,7 +61,7 @@ class WorkerController extends Controller
      */
     public function show(Worker $worker)
     {
-        // Se redirecciona a la vista del inventario de cada trabajador por medio del ModelBinding
+        // Se redirecciona a la vista del inventario de cada trabajador por medio del ModelBinding (No está en uso)
         return view('worker.show', [
             'worker' => $worker
         ]);
@@ -90,15 +91,17 @@ class WorkerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validaciones de campos para poder editar
+        // Validaciones de campos para poder editar el trabajador
         $request -> validate([
             'document' => ['required', 'min:6', 'max:11'],
             'name' => ['required', 'regex:/^[\pL\s\-]+$/u', 'min:2'],
             'lastname' => ['required', 'regex:/^[\pL\s\-]+$/u', 'min:2'],
             'telephone' => ['required', 'min:7', 'max:10'],
-            'email' => ['required', 'email']
+            'email' => ['required', 'email'],
+            'profession' => ['required', 'regex:/^[\pL\s\-]+$/u']
         ],
         [
+            // Mensajes de error en las validaciones
             'document.required' => 'El campo Documento es obligatorio',
             'name.required' => 'El campo Nombres es obligatorio',
             'lastname.required' => 'El campo Apellidos es obligatorio',
@@ -112,15 +115,18 @@ class WorkerController extends Controller
             'telephone.max' => 'El campo Celular debe tener máximo 10 dígitos',
             'email.email' => 'Diligencie un correo electrónico válido',
             'name.regex' => 'El Nombre no puede tener números',
-            'lastname.regex' => 'El Apellido no puede tener números'
+            'lastname.regex' => 'El Apellido no puede tener números',
+            'profession.required' => 'El campo Cargo es obligatorio',
+            'profession.regex' => 'El campo Cargo no puede tener números'
         ]);
 
-        //Se almacena el trabajador que se ha editado y se retorna a la vista index de trabajadores
+        //Se almacena el trabajador que se ha editado y se retorna a la vista principal de trabajadores
         $worker = Worker::find($id);
         $worker->name = $request->get('name');
         $worker->lastname = $request->get('lastname');
         $worker->telephone = $request->get('telephone');
         $worker->email = $request->get('email');
+        $worker->profession = $request->get('profession');
 
         $worker -> save();
         return redirect('/workers');
@@ -134,7 +140,7 @@ class WorkerController extends Controller
      */
     public function destroy(Worker $worker)
     {
-        // Se elimina el trabajador
+        // Se elimina el trabajador seleccionado
         $worker -> delete();
         return back();
     }

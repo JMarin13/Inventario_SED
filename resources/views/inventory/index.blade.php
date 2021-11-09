@@ -1,52 +1,54 @@
-@extends('layouts.base')
+@extends('layouts.app')
 @section('content')
-    <div class="row">
+    <div class="row text-center alert alert-success">
         <div class="col">
-            <h1>Inventario de Herramientas Asignadas</h1>
+            <h1 class="text-center">Inventario de Herramientas </h1>
         </div>
     </div>
     <br>
-    <div class="row">
+    {{-- <div class="row">
         <div class="col text-right">
             <a href="/workers" class="btn btn-danger btn-block">Regresar a lista de Trabajadores</a>            
         </div>
-    </div>
+    </div> --}}
     <br>
     <div class="content">
         <div class="row">
             <div class="col">
                 <div class="jumbotron">
-                    <h1 class="display-4">{{$worker->name}} {{$worker->lastname}}</h1>
-                    <p class="lead"><strong>Número de Documento: </strong> {{$worker->document}}</p>
-                    <p class="lead"><strong>Correo Electrónico: </strong> {{$worker->email}}</p>
-                    <hr class="my-4">
-                    <h3>Inventario</h3>
-
                     <div class="col text-right">
-                        <a href="/inventories/create" class="btn btn-primary">Agregar asignación de herramienta a {{$worker->name}} {{$worker->lastname}}</a>
+                        <a href="/inventories/create" class="btn btn-primary">Agregar herramienta</a>
                     </div>
                     <br>
                     <table class="table table-bordered table-striped">
-                        <thead>
+                        <thead class="text-center">
                             <th>Serial</th>
-                            <th>Nombre</th>
+                            <th>Marca</th>
                             <th>Modelo</th>
+                            <th>Descripción</th>
+                            <th>Color</th>
+                            <th>Estado</th>
                             <th>Fecha de Asignación</th>
+                            <th>Funcionario asignado</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </thead>
-                        <tbody>
-                            @foreach ($worker->inventories as $inventory)
+                        <tbody class="text-center">
+                            @foreach ($inventories as $inventory)
                                 <tr>
                                     <td>{{$inventory->serial}}</td>
-                                    <td>{{$inventory->name}}</td>
+                                    <td>{{$inventory->brand}}</td>
                                     <td>{{$inventory->model}}</td>
+                                    <td>{{$inventory->description}}</td>
+                                    <td>{{$inventory->color}}</td>
+                                    <td>{{$inventory->status}}</td>
                                     <td>{{$inventory->date_assignment}}</td>
+                                    <td>{{$inventory->worker_id}} </td>
                                     <td>
-                                        <a href="/workers/{{$worker->id}}/inventories/{{$inventory->id}}/edit" class="btn btn-success">Editar</a>
+                                        <a href="/inventories/{{$inventory->id}}/edit" class="btn btn-success">Editar</a>
                                     </td>
                                     <td>
-                                        <form action="{{route('inventories.destroy', [$worker, $inventory])}}" method="POST">
+                                        <form action="/inventories/{{$inventory->id}}" method="POST"">
                                             @csrf
                                             @method('DELETE')
                                             <input 
@@ -65,4 +67,13 @@
             </div>
         </div>
     </div>
+    <style>
+        .btn-danger {
+            background-color: #555555;
+        }
+        .btn-success {
+            background-color: #e7e7e7; 
+            color: black;
+        }
+    </style>
 @endsection

@@ -14,15 +14,24 @@ use App\Http\Controllers;
 |
 */
 
-Route::get('/', 'WorkerController@index');
+Route::resource('/', 'IndexController');
 
 Route::get('/testdb', 'HomeController@testDBConection');
 
-Route::resource('/workers', 'WorkerController');
+Route::resource('/workers', 'WorkerController')->middleware('auth');
 
-// Route::resource('/inventories', 'InventoryController');
+Route::resource('/inventories', 'InventoryController')->middleware('auth');
+Route::resource('/workers/{worker}/inventories', 'InventoryController')->middleware('auth');
 
-Route::get('/workers/{worker}/inventories/create', 'InventoryController@create');
+Route::get('/inventories/{inventory}', 'IndexController@show')->name('inventory.show');
+
+Route::resource('/users', 'UserController')->middleware('auth');
+
+/* Route::get('/workers/{worker}/inventories/create', 'InventoryController@create');
 Route::get('/workers/{worker}/inventories/{inventory}/edit', 'InventoryController@edit');
 Route::post('/workers/{worker}/inventories', 'InventoryController@store');
-Route::delete('/workers/{worker}/inventories/{inventory}', 'InventoryController@destroy')->name('inventories.destroy');
+Route::delete('/workers/{worker}/inventories/{inventory}', 'InventoryController@destroy')->name('inventories.destroy'); */
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
