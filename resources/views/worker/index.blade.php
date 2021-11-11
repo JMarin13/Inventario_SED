@@ -10,9 +10,12 @@
         <div class="row">
             <div class="col">
                 <div class="jumbotron">
-                    <div class="row">
+                    <div class="form-row">
+                        <div class="col">
+                            <a href="/reports" class="btn btn-success btn-block">Descargar reporte de funcionarios y herramientas</a>
+                        </div>
                         <div class="col text-right">
-                            <a href="/workers/create" class="btn btn-primary">Crear nuevo Funcionario</a>
+                            <a href="/workers/create" class="btn btn-primary btn-block">Crear nuevo Funcionario</a>
                         </div>
                     </div>
                     <br>

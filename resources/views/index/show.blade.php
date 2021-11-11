@@ -31,6 +31,11 @@
                 margin-top: 10px;
             }
 
+            .mas_info {
+                background-color:rgba(1, 6, 8, 0.377);
+                text-align: center;
+            }
+            
         </style> 
     </head>
     <body>
@@ -52,20 +57,20 @@
                 <div class="pb-4 mb-4 d-flex justify-content-center text-center">
                     <div class="col-mb-8">
                         @csrf
-                        <div class="row no-gutters border overflow-hidden alert bg-secondary flex-mb-row mb-4 shadpw-sm h-md-250 position-relative">
-                            <div class="col p-4 d-flex alert alert-success flex-column position-static">
-                                <h2 class="mb-0" style="color: #000">Descripción: {{$inventory->description}} {{$inventory->brand}}</h2>
-                                <h4 class="card-text mb-auto">Serial: {{$inventory->serial}}</h4>
-                                <h4 class="card-text mb-auto">Modelo: {{$inventory->model}}</h4>
-                                <h4 class="card-text mb-auto">Fecha asignación: {{$inventory->date_assignment}}</h4>
-                                <h4 class="name">Funcionario: {{$worker->name}} {{$worker->lastname}}</h4>
-                                <a href="/" class="btn-primary btn-dark">Volver a página principal</a>
+                        <div class="row alert bg-secondary shadow-sm">
+                            <div class="col d-flex alert alert-success flex-column">
+                                <h4 class="mb-0" style="color: #000">Descripción: {{$inventory->description}} {{$inventory->brand}}</h4><br>
+                                <h5 class="card-text mb-auto">Serial: {{$inventory->serial}}</h5>
+                                <h5 class="card-text mb-auto">Modelo: {{$inventory->model}}</h5>
+                                <h5 class="card-text mb-auto">Fecha asignación: {{$inventory->date_assignment}}</h5>
+                                <h5 class="name">Funcionario: {{$worker->name}} {{$worker->lastname}}</h5>
+                                <a href="/" class="btn-primary btn-dark mas_info">Volver a página principal</a>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
-            <br><br><br>
+            <br>
             <div class="footer alert alert-success">
                 <h5 class="text-center" style="color: #000">Derechos Reservados</h5>
                 <h5 class="text-center" style="color: #000">2021</h5>

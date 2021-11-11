@@ -6,18 +6,17 @@
         </div>
     </div>
     <br>
-    {{-- <div class="row">
-        <div class="col text-right">
-            <a href="/workers" class="btn btn-danger btn-block">Regresar a lista de Trabajadores</a>            
-        </div>
-    </div> --}}
-    <br>
     <div class="content">
         <div class="row">
             <div class="col">
                 <div class="jumbotron">
-                    <div class="col text-right">
-                        <a href="/inventories/create" class="btn btn-primary">Agregar herramienta</a>
+                    <div class="form-row">
+                        <div class="col">
+                            <a href="/reports" class="btn btn-success btn-block">Descargar reporte de funcionarios y herramientas</a>
+                        </div>
+                        <div class="col text-right">
+                            <a href="/inventories/create" class="btn btn-primary btn-block">Agregar herramienta</a>
+                        </div>
                     </div>
                     <br>
                     <table class="table table-bordered table-striped">
@@ -34,33 +33,41 @@
                             <th>Eliminar</th>
                         </thead>
                         <tbody class="text-center">
-                            @foreach ($inventories as $inventory)
-                                <tr>
-                                    <td>{{$inventory->serial}}</td>
-                                    <td>{{$inventory->brand}}</td>
-                                    <td>{{$inventory->model}}</td>
-                                    <td>{{$inventory->description}}</td>
-                                    <td>{{$inventory->color}}</td>
-                                    <td>{{$inventory->status}}</td>
-                                    <td>{{$inventory->date_assignment}}</td>
-                                    <td>{{$inventory->worker_id}} </td>
-                                    <td>
-                                        <a href="/inventories/{{$inventory->id}}/edit" class="btn btn-success">Editar</a>
-                                    </td>
-                                    <td>
-                                        <form action="/inventories/{{$inventory->id}}" method="POST"">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input 
-                                                type="submit" 
-                                                class="btn btn-danger" 
-                                                value="Eliminar"
-                                                onclick="return confirm('¿Estás seguro de eliminar la Herramienta del inventario?')"
-                                            />
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            @forelse ($workers as $worker)
+                                @forelse ($inventories as $inventory)
+                                    @if($inventory->worker_id == $worker->id)
+                                    <tr>
+                                        <td>{{$inventory->serial}}</td>
+                                        <td>{{$inventory->brand}}</td>
+                                        <td>{{$inventory->model}}</td>
+                                        <td>{{$inventory->description}}</td>
+                                        <td>{{$inventory->color}}</td>
+                                        <td>{{$inventory->status}}</td>
+                                        <td>{{$inventory->date_assignment}}</td>
+                                        <td>{{$worker->name}} {{$worker->lastname}}</td>
+                                        <td>
+                                            <a href="/inventories/{{$inventory->id}}/edit" class="btn btn-success">Editar</a>
+                                        </td>
+                                        <td>
+                                            <form action="/inventories/{{$inventory->id}}" method="POST"">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input 
+                                                    type="submit" 
+                                                    class="btn btn-danger" 
+                                                    value="Eliminar"
+                                                    onclick="return confirm('¿Estás seguro de eliminar la Herramienta del inventario?')"
+                                                />
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                @empty
+                                    <p>Vacio</p>
+                                @endforelse
+                            @empty
+                                <p>Vacio</p>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use App\Exports\ReportExport;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,16 @@ Route::get('/testdb', 'HomeController@testDBConection');
 Route::resource('/workers', 'WorkerController')->middleware('auth');
 
 Route::resource('/inventories', 'InventoryController')->middleware('auth');
-Route::resource('/workers/{worker}/inventories', 'InventoryController')->middleware('auth');
+// Route::resource('/workers/{worker}/inventories', 'InventoryController')->middleware('auth');
 
 Route::get('/inventories/{inventory}', 'IndexController@show')->name('inventory.show');
 
 Route::resource('/users', 'UserController')->middleware('auth');
+
+Route::get('/reports', function()
+{
+    return (new ReportExport)->download('inventory.xlsx');
+})->middleware('auth');
 
 /* Route::get('/workers/{worker}/inventories/create', 'InventoryController@create');
 Route::get('/workers/{worker}/inventories/{inventory}/edit', 'InventoryController@edit');

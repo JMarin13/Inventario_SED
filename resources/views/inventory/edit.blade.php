@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <h1>Editar Herramienta: {{$inventory->name}}</h1>
+            <h1>Editar Herramienta: {{$inventory->description}} {{$inventory->brand}}</h1>
         </div>
     </div>
     <br>
@@ -64,7 +64,7 @@
                     </select>
                 </div>
                 <br>
-                <div class="row">
+                <div class="row" style="margin-bottom: 20px">
                     <div class="col">
                         <a href="/inventories" class="btn btn-danger btn-block">Regresar al inventario</a>
                     </div>

@@ -6,6 +6,7 @@ use App\Models\Inventory;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 use App\Http\Requests\InventoryRequest;
+use DB;
 
 class InventoryController extends Controller
 {
@@ -23,6 +24,13 @@ class InventoryController extends Controller
             'inventories' => $inventories,
             'workers' => $workers
         ]);
+        /* $inventories = DB::table('inventories')
+        ->join('workers', 'workers.id', '=', 'inventories.worker_id')
+        ->select('inventories.serial', 'inventories.description', 'workers.name as funcionario')
+        ->get();
+        return view('inventory.index', [
+            'inventories' => $inventories
+        ]); */
     }
 
     /**
@@ -128,8 +136,11 @@ class InventoryController extends Controller
 
         // Se agrega a la base de datos la información de la herramienta editada, y se valida que todo sea correcto
         $inventory->serial = $request->post('serial');
-        $inventory->name = $request->post('name');
+        $inventory->brand = $request->post('brand');
         $inventory->model = $request->post('model');
+        $inventory->description = $request->post('description');
+        $inventory->color = $request->post('color');
+        $inventory->status = $request->post('status');
         $inventory->date_assignment = $request->post('date_assignment');
         $inventory->worker_id = $request->get('worker_id');
 
