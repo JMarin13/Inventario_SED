@@ -1,5 +1,5 @@
-<table>
-    <thead>
+<table class="table table-bordered table-striped">
+    <thead class="text-center">
         <tr>
             <th>Funcionario</th>
             <th>Marca</th>
@@ -11,7 +11,7 @@
             <th>Fecha Asignación</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
         @forelse ($workers as $worker)
             @forelse ($inventories as $inventory)
                 @if($inventory->worker_id == $worker->id)
