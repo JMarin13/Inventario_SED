@@ -44,6 +44,11 @@
                     placeholder="Ingresar su correo electrónico" value="{{old('email')}}">
                 </div>
                 <div class="form-group">
+                    <label for="dependency">Dependencia</label>
+                    <input type="text" class="form-control" id="dependency" name="dependency" 
+                    placeholder="Ingresar dependencia del trabajador" value="{{old('dependency')}}">
+                </div>
+                <div class="form-group">
                     <label for="profession">Cargo</label>
                     <input type="text" class="form-control" id="profession" name="profession" 
                     placeholder="Ingresar cargo del trabajador" value="{{old('profession')}}">

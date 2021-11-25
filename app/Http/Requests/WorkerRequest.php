@@ -30,7 +30,8 @@ class WorkerRequest extends FormRequest
             'lastname' => ['required', 'regex:/^[\pL\s\-]+$/u', 'min:2'],
             'telephone' => ['required', 'min:7', 'max:10'],
             'email' => ['required', 'email'],
-            'profession' => ['required', 'regex:/^[\pL\s\-]+$/u']
+            'profession' => ['required', 'regex:/^[\pL\s\-]+$/u'],
+            'dependency' => ['required', 'regex:/^[\pL\s\-]+$/u']
         ];
     }
 
@@ -58,7 +59,9 @@ class WorkerRequest extends FormRequest
             'name.regex' => 'El Nombre no puede tener números',
             'lastname.regex' => 'El Apellido no puede tener números',
             'profession.required' => 'El campo Cargo es obligatorio',
-            'profession.regex' => 'El Cargo no puede tener números'
+            'profession.regex' => 'El Cargo no puede tener números',
+            'dependency.required' => 'El campo Dependencia es obligatorio',
+            'dependency.regex' => 'El campo Dependencia no puede tener números'
         ];
     }
 }

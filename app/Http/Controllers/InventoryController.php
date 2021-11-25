@@ -19,18 +19,11 @@ class InventoryController extends Controller
     {
         // Se muestra en una tabla la lista de todas las herramientas que se han agregado, con su información
         $inventories = Inventory::all();
-        $workers = Worker::all();
+        $workers = Worker::orderBy('name', 'ASC')->get();
         return view('inventory.index', [
             'inventories' => $inventories,
             'workers' => $workers
         ]);
-        /* $inventories = DB::table('inventories')
-        ->join('workers', 'workers.id', '=', 'inventories.worker_id')
-        ->select('inventories.serial', 'inventories.description', 'workers.name as funcionario')
-        ->get();
-        return view('inventory.index', [
-            'inventories' => $inventories
-        ]); */
     }
 
     /**
@@ -41,7 +34,7 @@ class InventoryController extends Controller
     public function create()
     {
         // Se muestra la vista del formulario para crear una nueva herramienta
-        $workers = Worker::all();
+        $workers = Worker::orderBy('name', 'ASC')->get();
         return view('inventory.create', [
             'workers' => $workers
         ]);
@@ -90,7 +83,7 @@ class InventoryController extends Controller
     public function edit(Inventory $inventory)
     {
         //Se muestra la vista del formulario para editar una herramienta
-        $workers = Worker::all();
+        $workers = Worker::orderBy('name', 'ASC')->get();
         return view('inventory.edit', [
             'inventory' => $inventory,
             'workers' => $workers

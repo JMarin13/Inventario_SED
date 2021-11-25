@@ -25,8 +25,6 @@
                             <th>Marca</th>
                             <th>Modelo</th>
                             <th>Descripción</th>
-                            <th>Color</th>
-                            <th>Estado</th>
                             <th>Fecha de Asignación</th>
                             <th>Funcionario asignado</th>
                             <th>Editar</th>
@@ -41,8 +39,6 @@
                                         <td>{{$inventory->brand}}</td>
                                         <td>{{$inventory->model}}</td>
                                         <td>{{$inventory->description}}</td>
-                                        <td>{{$inventory->color}}</td>
-                                        <td>{{$inventory->status}}</td>
                                         <td>{{$inventory->date_assignment}}</td>
                                         <td>{{$worker->name}} {{$worker->lastname}}</td>
                                         <td>

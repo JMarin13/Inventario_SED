@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
     <div class="row text-center alert alert-success">
         <div class="col">
@@ -26,6 +26,7 @@
                             <th>Apellidos</th>
                             <th>Celular</th>
                             <th>Correo Electrónico</th>
+                            <th>Dependencia</th>
                             <th>Cargo</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
@@ -38,6 +39,7 @@
                                     <td>{{$worker->lastname}}</td>
                                     <td>{{$worker->telephone}}</td>
                                     <td>{{$worker->email}}</td>
+                                    <td>{{$worker->dependency}}</td>
                                     <td>{{$worker->profession}}</td>
                                     <td>
                                         <a href="/workers/{{$worker->id}}/edit" class="btn btn-success">Editar</a>

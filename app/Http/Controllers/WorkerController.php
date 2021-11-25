@@ -47,6 +47,7 @@ class WorkerController extends Controller
         $worker -> lastname = $request->get('lastname');
         $worker -> telephone = $request->get('telephone');
         $worker -> email = $request->get('email');
+        $worker -> dependency = $request->get('dependency');
         $worker -> profession = $request->get('profession');
 
         $worker -> save();
@@ -98,7 +99,8 @@ class WorkerController extends Controller
             'lastname' => ['required', 'regex:/^[\pL\s\-]+$/u', 'min:2'],
             'telephone' => ['required', 'min:7', 'max:10'],
             'email' => ['required', 'email'],
-            'profession' => ['required', 'regex:/^[\pL\s\-]+$/u']
+            'profession' => ['required', 'regex:/^[\pL\s\-]+$/u'],
+            'dependency' => ['required', 'regex:/^[\pL\s\-]+$/u']
         ],
         [
             // Mensajes de error en las validaciones
@@ -117,7 +119,9 @@ class WorkerController extends Controller
             'name.regex' => 'El Nombre no puede tener números',
             'lastname.regex' => 'El Apellido no puede tener números',
             'profession.required' => 'El campo Cargo es obligatorio',
-            'profession.regex' => 'El campo Cargo no puede tener números'
+            'profession.regex' => 'El campo Cargo no puede tener números',
+            'dependency.required' => 'El campo Dependencia es obligatorio',
+            'dependency.regex' => 'El campo Dependencia no puede tener números'
         ]);
 
         //Se almacena el trabajador que se ha editado y se retorna a la vista principal de trabajadores
@@ -126,6 +130,7 @@ class WorkerController extends Controller
         $worker->lastname = $request->get('lastname');
         $worker->telephone = $request->get('telephone');
         $worker->email = $request->get('email');
+        $worker->dependency = $request->get('dependency');
         $worker->profession = $request->get('profession');
 
         $worker -> save();

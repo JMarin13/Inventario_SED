@@ -45,9 +45,14 @@
                     placeholder="Ingresar su correo electrónico" value="{{old('email', $worker->email)}}">
                 </div>
                 <div class="form-group">
+                    <label for="dependency">Dependencia</label>
+                    <input type="text" class="form-control" id="dependency" name="dependency" 
+                    placeholder="Ingresar dependencia del trabajador" value="{{old('dependency', $worker->dependency)}}">
+                </div>
+                <div class="form-group">
                     <label for="profession">Cargo</label>
                     <input type="text" class="form-control" id="profession" name="profession" 
-                    placeholder="Ingresar nombres del trabajador" value="{{old('profession', $worker->profession)}}">
+                    placeholder="Ingresar cargo del trabajador" value="{{old('profession', $worker->profession)}}">
                 </div>
                 <br>
                 <div class="row">
